@@ -35,8 +35,10 @@
   --color-gold:           #D4AF37;
   --color-gold-light:     #f0d060;
   --color-white:          #FFFFFF;
+  --color-page-bg:        #FFFFFF;
   --color-bg-light:       #F5F8F5;
   --color-bg-alt:         #EDF3ED;
+  --color-on-gold:        #1a2e1a;
 
   /* Text Colors */
   --color-text-dark:      #1a2e1a;
@@ -92,7 +94,7 @@
   --color-secondary:      #2db82b;
   --color-gold:           #f0c84a;
   --color-gold-light:     #f7df80;
-  --color-white:          #111e14;
+  --color-page-bg:        #111e14;
   --color-bg-light:       #141f16;
   --color-bg-alt:         #1a2b1d;
 
@@ -129,7 +131,7 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text-body);
-  background-color: var(--color-white);
+  background-color: var(--color-page-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -1085,7 +1087,7 @@ p { margin-bottom: 0; }
   font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--color-text-dark);
+  color: var(--color-on-gold);
 }
 
 .special-dots {
@@ -1357,7 +1359,7 @@ p { margin-bottom: 0; }
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-gold);
-  color: var(--color-text-dark);
+  color: var(--color-on-gold);
   font-size: 0.7rem;
   font-weight: 700;
   padding: 0.25rem 0.75rem;
@@ -1878,7 +1880,7 @@ a.contact-value:hover {
 ================================================================ */
 
 [data-theme="dark"] body {
-  background-color: var(--color-white);
+  background-color: var(--color-page-bg);
   color: var(--color-text-body);
 }
 

@@ -10,6 +10,7 @@
      7. Back-to-Top Button
      8. Scroll Fade-in Animations
      9. Footer Year
+    10. Order Form (Cart + WhatsApp Checkout)
 ================================================================ */
 
 'use strict';
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initFadeInAnimations();
   initFooterYear();
+  initOrderForm();
 });
 
 
@@ -461,4 +463,210 @@ function initFooterYear() {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+}
+
+
+/* ================================================================
+   10. ORDER FORM (Cart + WhatsApp Checkout)
+================================================================ */
+function initOrderForm() {
+  const orderBuilder   = document.getElementById('orderBuilder');
+  const sendOrderBtn   = document.getElementById('sendOrderBtn');
+
+  if (!orderBuilder || !sendOrderBtn) return; // Order section not on this page
+
+  // Kitchen's WhatsApp number — replace with the real number (same one used
+  // for the footer/contact WhatsApp links, kept in sync with those).
+  const KITCHEN_WHATSAPP_NUMBER = '2348000000000';
+
+  const orderItems          = document.querySelectorAll('.order-item');
+  const summaryList         = document.getElementById('orderSummaryList');
+  const summaryEmpty        = document.getElementById('orderSummaryEmpty');
+  const totalEl             = document.getElementById('orderTotal');
+  const fulfillmentPickup   = document.getElementById('fulfillmentPickup');
+  const fulfillmentDelivery = document.getElementById('fulfillmentDelivery');
+  const deliveryGroup       = document.getElementById('deliveryLocationGroup');
+  const deliverySelect      = document.getElementById('deliveryLocation');
+  const customerName        = document.getElementById('customerName');
+  const customerPhone       = document.getElementById('customerPhone');
+  const customerStateCode   = document.getElementById('customerStateCode');
+  const paymentCash         = document.getElementById('paymentCash');
+  const paymentTransfer     = document.getElementById('paymentTransfer');
+  const bankDetailsCard     = document.getElementById('bankDetailsCard');
+  const copyAccountBtn      = document.getElementById('copyAccountBtn');
+  const bankAccountNumber   = document.getElementById('bankAccountNumber');
+  const orderNotes          = document.getElementById('orderNotes');
+  const orderError          = document.getElementById('orderError');
+
+  const currency = n => `₦${n.toLocaleString('en-NG')}`;
+
+  /* --- Quantity steppers --- */
+  orderItems.forEach(item => {
+    const minusBtn = item.querySelector('.qty-minus');
+    const plusBtn  = item.querySelector('.qty-plus');
+    const qtyEl    = item.querySelector('.qty-value');
+
+    function setQty(qty) {
+      qty = Math.max(0, qty);
+      qtyEl.textContent = qty;
+      item.classList.toggle('has-qty', qty > 0);
+      renderSummary();
+    }
+
+    plusBtn.addEventListener('click', () => setQty(parseInt(qtyEl.textContent, 10) + 1));
+    minusBtn.addEventListener('click', () => setQty(parseInt(qtyEl.textContent, 10) - 1));
+  });
+
+  /* --- Render the order summary panel from current item quantities --- */
+  function renderSummary() {
+    const selected = [];
+    let total = 0;
+
+    orderItems.forEach(item => {
+      const qty = parseInt(item.querySelector('.qty-value').textContent, 10) || 0;
+      if (qty > 0) {
+        const price = parseInt(item.dataset.price, 10) || 0;
+        const lineTotal = price * qty;
+        total += lineTotal;
+        selected.push({ name: item.dataset.name, qty, price, lineTotal });
+      }
+    });
+
+    summaryList.innerHTML = '';
+
+    if (!selected.length) {
+      summaryEmpty.hidden = false;
+      summaryList.appendChild(summaryEmpty);
+    } else {
+      summaryEmpty.hidden = true;
+      selected.forEach(line => {
+        const row = document.createElement('div');
+        row.className = 'order-summary-row';
+        row.innerHTML = `<span>${line.qty} × ${line.name}</span><strong>${currency(line.lineTotal)}</strong>`;
+        summaryList.appendChild(row);
+      });
+    }
+
+    totalEl.textContent = currency(total);
+    return { selected, total };
+  }
+
+  /* --- Fulfillment type: show/hide delivery location picker --- */
+  function updateFulfillmentUI() {
+    deliveryGroup.hidden = !fulfillmentDelivery.checked;
+  }
+  fulfillmentPickup.addEventListener('change', updateFulfillmentUI);
+  fulfillmentDelivery.addEventListener('change', updateFulfillmentUI);
+
+  /* --- Payment method: show/hide bank transfer details --- */
+  function updatePaymentUI() {
+    bankDetailsCard.hidden = !paymentTransfer.checked;
+  }
+  paymentCash.addEventListener('change', updatePaymentUI);
+  paymentTransfer.addEventListener('change', updatePaymentUI);
+
+  /* --- Copy bank account number --- */
+  if (copyAccountBtn && bankAccountNumber) {
+    copyAccountBtn.addEventListener('click', async () => {
+      const number = bankAccountNumber.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(number);
+      } catch {
+        // Clipboard API unavailable — fall back silently, number is still visible to copy manually
+      }
+      const original = copyAccountBtn.textContent;
+      copyAccountBtn.textContent = 'Copied!';
+      copyAccountBtn.classList.add('copied');
+      setTimeout(() => {
+        copyAccountBtn.textContent = original;
+        copyAccountBtn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+
+  /* --- Helper: show a validation error inline --- */
+  function showError(message, focusEl) {
+    orderError.textContent = message;
+    orderError.hidden = false;
+    if (focusEl) focusEl.focus();
+  }
+  function clearError() {
+    orderError.hidden = true;
+    orderError.textContent = '';
+  }
+
+  /* --- Build & send the WhatsApp order --- */
+  sendOrderBtn.addEventListener('click', () => {
+    clearError();
+
+    const { selected, total } = renderSummary();
+
+    if (!selected.length) {
+      showError('Please select at least one item before placing your order.');
+      orderBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const name      = customerName.value.trim();
+    const phone     = customerPhone.value.trim();
+    const stateCode = customerStateCode.value.trim();
+
+    if (!name) {
+      showError('Please enter your name.', customerName);
+      return;
+    }
+    if (!phone) {
+      showError('Please enter your phone number.', customerPhone);
+      return;
+    }
+    if (!stateCode) {
+      showError('Please enter your NYSC state code.', customerStateCode);
+      return;
+    }
+
+    const isDelivery = fulfillmentDelivery.checked;
+    const location   = deliverySelect.value;
+
+    if (isDelivery && !location) {
+      showError('Please select a delivery location.', deliverySelect);
+      return;
+    }
+
+    const paymentMethod = paymentTransfer.checked
+      ? paymentTransfer.value
+      : paymentCash.value;
+
+    const notes = orderNotes.value.trim();
+
+    // Build the message
+    const lines = [];
+    lines.push('Hello SAED Kitchen! I\'d like to place an order.');
+    lines.push('');
+    lines.push('*Order:*');
+    selected.forEach(line => {
+      lines.push(`• ${line.qty} × ${line.name} — ${currency(line.lineTotal)}`);
+    });
+    lines.push(`*Estimated Total:* ${currency(total)} (to be confirmed)`);
+    lines.push('');
+    lines.push(`*Fulfillment:* ${isDelivery ? 'Delivery' : 'Pickup'}`);
+    if (isDelivery) {
+      lines.push(`*Delivery Location:* ${location}`);
+    }
+    lines.push(`*Payment:* ${paymentMethod}`);
+    lines.push('');
+    lines.push(`*Name:* ${name}`);
+    lines.push(`*State Code:* ${stateCode}`);
+    lines.push(`*Phone:* ${phone}`);
+    if (notes) {
+      lines.push(`*Notes:* ${notes}`);
+    }
+
+    const message = lines.join('\n');
+    const url = `https://wa.me/${KITCHEN_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
+
+  // Initial render (in case of pre-filled state on page refresh)
+  renderSummary();
 }

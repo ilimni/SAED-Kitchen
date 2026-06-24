@@ -1276,6 +1276,351 @@ p { margin-bottom: 0; }
 
 
 /* ================================================================
+   9b. ORDER ONLINE
+================================================================ */
+
+.order-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.order-builder {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.order-category {
+  margin-bottom: var(--space-xl);
+}
+
+.order-category:last-child {
+  margin-bottom: 0;
+}
+
+.order-category-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0.65rem var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: background var(--transition-fast);
+}
+
+.order-category .order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item.has-qty {
+  background: rgba(11, 110, 61, 0.06);
+}
+
+.order-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.order-item-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+}
+
+.order-item-price {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-light);
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.qty-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: transparent;
+}
+
+.qty-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/* Order Summary Panel */
+.order-summary {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-xl));
+}
+
+.order-summary-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.order-summary-list {
+  margin-bottom: var(--space-md);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.order-summary-empty {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  color: var(--color-text-body);
+}
+
+.order-summary-row strong {
+  color: var(--color-text-dark);
+}
+
+.order-summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  border-top: 2px solid var(--color-border);
+  padding-top: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.order-estimate-note {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+}
+
+.order-field-group {
+  margin-bottom: var(--space-lg);
+}
+
+.order-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.order-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.order-pill {
+  position: relative;
+  cursor: pointer;
+}
+
+.order-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.order-pill span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-xl);
+  border: 2px solid var(--color-border);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-body);
+  transition: all var(--transition-fast);
+}
+
+.order-pill input:checked + span {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-color: transparent;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.order-pill input:focus-visible + span {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.order-input,
+.order-select,
+.order-textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-border);
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color var(--transition-fast);
+}
+
+.order-input:focus,
+.order-select:focus,
+.order-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.order-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.bank-details-card {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--border-radius);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.bank-details-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.bank-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--color-text-body);
+  padding: 0.2rem 0;
+  gap: var(--space-sm);
+}
+
+.bank-account-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.copy-btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--color-gold);
+  background: transparent;
+  color: var(--color-gold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-on-gold);
+}
+
+.copy-btn.copied {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.bank-details-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-top: var(--space-sm);
+}
+
+.order-error {
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  color: #c0392b;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--space-md);
+}
+
+.order-whatsapp-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+/* "Order Now" nav CTA */
+.nav-link.nav-link-cta {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  font-weight: 700;
+  margin-left: var(--space-xs);
+}
+
+.nav-link.nav-link-cta:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: var(--color-white);
+}
+
+
+/* ================================================================
    10. CAMP SCHEDULE
 ================================================================ */
 
@@ -1976,7 +2321,9 @@ a.contact-value:hover {
 [data-theme="dark"] .menu-card,
 [data-theme="dark"] .schedule-card,
 [data-theme="dark"] .location-card,
-[data-theme="dark"] .contact-card {
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .order-builder,
+[data-theme="dark"] .order-summary {
   background: var(--color-card-bg);
   border-color: var(--color-border);
 }
@@ -2193,6 +2540,15 @@ a.contact-value:hover {
   /* Contact */
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Order */
+  .order-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .order-summary {
+    position: static;
   }
 
   /* Footer */

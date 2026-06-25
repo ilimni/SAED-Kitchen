@@ -80,9 +80,9 @@
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <!-- Hero Background Image – replace with actual food photo -->
-    <!-- Image path: images/hero-food.jpg -->
+    <!-- Image path: images/hero-food.webp -->
     <img
-      src="images/hero-food.jpg"
+      src="images/hero-food.webp"
       alt=""
       class="hero-bg-image"
       role="presentation"
@@ -151,12 +151,15 @@
 
         <!-- About Image -->
         <div class="about-image-wrapper fade-in">
-          <!-- Replace with actual kitchen/food image: images/about-kitchen.jpg -->
+          <!-- Replace with actual kitchen/food image: images/about-kitchen.webp -->
           <div class="about-image-frame">
             <img
-              src="images/about-kitchen.jpg"
+              src="images/about-kitchen.webp"
               alt="Inside SAED Kitchen at NYSC Orientation Camp"
               class="about-image"
+              width="800"
+              height="600"
+              loading="lazy"
               onerror="this.parentElement.classList.add('img-fallback')"
             />
             <div class="about-image-badge">
@@ -298,16 +301,19 @@
           <!-- Special meal image -->
           <div class="special-img-wrap" id="specialImgWrap">
             <img
-              src="images/jollof-rice-chicken.jpg"
-              alt="Jollof Rice and Fried Chicken"
+              src="images/rice-stew-salad-plantain-beef.webp"
+              alt="Rice, Stew, Salad and Fried Plantain with Beef"
               class="special-img"
               id="specialImg"
+              width="180"
+              height="180"
+              loading="lazy"
               onerror="this.parentElement.classList.add('special-img--fallback')"
             />
           </div>
-          <h3 class="special-name" id="specialName">Jollof Rice &amp; Fried Chicken</h3>
+          <h3 class="special-name" id="specialName">Rice, Stew, Salad &amp; Fried Plantain with Beef</h3>
           <p class="special-desc" id="specialDesc">
-            Our signature smoky jollof rice paired with golden, crispy fried chicken. A camp classic loved by all.
+            A full, balanced plate — soft rice with rich tomato stew, fresh salad, caramelized plantain, and tender beef.
           </p>
           <div class="special-price">
             <span class="price-label">From</span>
@@ -317,6 +323,7 @@
 
         <!-- Dots indicator -->
         <div class="special-dots" id="specialDots" role="tablist" aria-label="Meal selection"></div>
+        <p class="special-swipe-hint">Swipe left or right to browse this week's specials</p>
       </div>
     </div>
   </section>
@@ -334,11 +341,9 @@
       <!-- Menu Filter Buttons -->
       <div class="menu-filters fade-in" role="tablist" aria-label="Menu categories">
         <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="filter-btn" data-filter="meals" role="tab" aria-selected="false">Meals</button>
-        <button class="filter-btn" data-filter="soups" role="tab" aria-selected="false">Soups</button>
-        <button class="filter-btn" data-filter="swallows" role="tab" aria-selected="false">Swallows</button>
-        <button class="filter-btn" data-filter="proteins" role="tab" aria-selected="false">Proteins</button>
-        <button class="filter-btn" data-filter="sides" role="tab" aria-selected="false">Sides</button>
+        <button class="filter-btn" data-filter="complete-meals" role="tab" aria-selected="false">Complete Meals</button>
+        <button class="filter-btn" data-filter="soup-swallow" role="tab" aria-selected="false">Soup &amp; Swallow</button>
+        <button class="filter-btn" data-filter="add-ons" role="tab" aria-selected="false">Add-ons</button>
         <button class="filter-btn" data-filter="snacks" role="tab" aria-selected="false">Snacks</button>
         <button class="filter-btn" data-filter="drinks" role="tab" aria-selected="false">Drinks</button>
       </div>
@@ -346,302 +351,253 @@
       <!-- Menu Grid -->
       <div class="menu-grid" id="menuGrid" role="list" aria-label="Menu items">
 
-        <!-- MAIN MEALS -->
-        <article class="menu-card fade-in" data-category="meals" role="listitem">
-          <!-- Replace with actual image: images/rice-stew.jpg -->
+        <!-- COMPLETE MEALS -->
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
           <div class="menu-card-image">
-            <img src="images/rice-stew.jpg" alt="Rice and Stew" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Meals</span>
+            <img src="images/rice-stew-beef.webp" alt="Rice and Stew with Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Rice &amp; Stew</h3>
-            <p class="menu-item-desc">Soft white rice served with rich, flavorful tomato stew. A true camp comfort meal.</p>
+            <h3 class="menu-item-name">Rice &amp; Stew with Beef</h3>
+            <p class="menu-item-desc">Soft white rice served with rich, flavorful tomato stew and tender beef. A true camp comfort meal.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,000 – ₦1,500</span>
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Popular</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="meals" role="listitem">
-          <!-- images/jollof-rice.jpg -->
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
           <div class="menu-card-image">
-            <img src="images/jollof-rice.jpg" alt="Jollof Rice" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Meals</span>
+            <img src="images/rice-stew-salad-plantain-beef.webp" alt="Rice, Stew, Salad and Fried Plantain with Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Jollof Rice</h3>
-            <p class="menu-item-desc">Smoky, perfectly seasoned Nigerian jollof rice — a party in a plate, at camp prices.</p>
+            <h3 class="menu-item-name">Rice, Stew, Salad &amp; Fried Plantain with Beef</h3>
+            <p class="menu-item-desc">A full, balanced plate — soft rice, rich stew, fresh salad, sweet plantain, and tender beef.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,000 – ₦2,000</span>
+              <span class="menu-price">From ₦1,500</span>
+              <span class="menu-tag">Full Plate</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
+          <div class="menu-card-image">
+            <img src="images/jollof-rice-beef.webp" alt="Jollof Rice with Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Jollof Rice with Beef</h3>
+            <p class="menu-item-desc">Smoky, perfectly seasoned Nigerian jollof rice served with tender beef — a party in a plate.</p>
+            <div class="menu-item-footer">
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Favourite</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="meals" role="listitem">
-          <!-- images/white-beans.jpg -->
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
           <div class="menu-card-image">
-            <img src="images/white-beans.jpg" alt="White Beans" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Meals</span>
+            <img src="images/jollof-rice-chicken.webp" alt="Jollof Rice with Chicken" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">White Beans</h3>
-            <p class="menu-item-desc">Slow-cooked, protein-rich white beans with palm oil and seasoning. Simple, filling, satisfying.</p>
+            <h3 class="menu-item-name">Jollof Rice with Chicken</h3>
+            <p class="menu-item-desc">Our signature smoky jollof rice paired with golden, crispy fried chicken. A camp classic.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦800 – ₦1,200</span>
+              <span class="menu-price">From ₦1,500</span>
+              <span class="menu-tag">Favourite</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="meals" role="listitem">
-          <!-- images/porridge-beans.jpg -->
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
           <div class="menu-card-image">
-            <img src="images/porridge-beans.jpg" alt="Porridge Beans" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Meals</span>
+            <img src="images/fried-rice-beef.webp" alt="Fried Rice with Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Porridge Beans</h3>
-            <p class="menu-item-desc">Creamy, well-seasoned bean porridge — hearty and protein-packed. Best paired with fried beef.</p>
+            <h3 class="menu-item-name">Fried Rice with Beef</h3>
+            <p class="menu-item-desc">Colourful, well-seasoned fried rice loaded with vegetables and served with tender beef.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦800 – ₦1,500</span>
+              <span class="menu-price">From ₦1,000</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
+          <div class="menu-card-image">
+            <img src="images/porridge-beans-beef.webp" alt="Porridge Beans with Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Porridge Beans with Beef</h3>
+            <p class="menu-item-desc">Creamy, well-seasoned bean porridge paired with tender fried beef. Hearty and protein-packed.</p>
+            <div class="menu-item-footer">
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Hearty</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="meals" role="listitem">
-          <!-- images/indomie.jpg -->
+        <article class="menu-card fade-in" data-category="complete-meals" role="listitem">
           <div class="menu-card-image">
-            <img src="images/indomie.jpg" alt="Indomie Noodles" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Meals</span>
+            <img src="images/fried-indomie-egg.webp" alt="Fried Indomie with Egg" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Complete Meal</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Indomie</h3>
-            <p class="menu-item-desc">Stir-fried noodles with vegetables, eggs, and seasoning. The quick-fix camp favourite.</p>
+            <h3 class="menu-item-name">Fried Indomie with Egg</h3>
+            <p class="menu-item-desc">Stir-fried noodles with vegetables and egg, well seasoned. The quick-fix camp favourite.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦600 – ₦1,000</span>
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Quick</span>
             </div>
           </div>
         </article>
 
-        <!-- SOUPS -->
-        <article class="menu-card fade-in" data-category="soups" role="listitem">
-          <!-- images/egusi.jpg -->
+        <!-- SOUP & SWALLOW -->
+        <article class="menu-card fade-in" data-category="soup-swallow" role="listitem">
           <div class="menu-card-image">
-            <img src="images/egusi.jpg" alt="Egusi Soup" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Soups</span>
+            <img src="images/egusi-fufu.webp" alt="Egusi Soup with Fufu" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Soup &amp; Swallow</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Egusi Soup</h3>
-            <p class="menu-item-desc">Rich, thick egusi soup packed with leafy vegetables, palm oil, and assorted proteins.</p>
+            <h3 class="menu-item-name">Egusi &amp; Fufu</h3>
+            <p class="menu-item-desc">Rich, thick egusi soup packed with leafy vegetables, served with soft, smooth cassava fufu.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,000 – ₦2,000</span>
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Classic</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="soups" role="listitem">
-          <!-- images/ogbono.jpg -->
+        <article class="menu-card fade-in" data-category="soup-swallow" role="listitem">
           <div class="menu-card-image">
-            <img src="images/ogbono.jpg" alt="Ogbono Soup" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Soups</span>
+            <img src="images/egusi-eba.webp" alt="Egusi Soup with Eba" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Soup &amp; Swallow</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Ogbono Soup</h3>
-            <p class="menu-item-desc">Silky, draw-soup perfection — ogbono cooked with palm oil, peppers, and your choice of protein.</p>
+            <h3 class="menu-item-name">Egusi &amp; Eba</h3>
+            <p class="menu-item-desc">Rich, thick egusi soup loaded with proteins and greens, served with firm, golden eba.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,000 – ₦2,000</span>
+              <span class="menu-price">From ₦1,000</span>
+              <span class="menu-tag">Classic</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="soups" role="listitem">
-          <!-- images/afang.jpg -->
+        <article class="menu-card fade-in" data-category="soup-swallow" role="listitem">
           <div class="menu-card-image">
-            <img src="images/afang.jpg" alt="Afang Soup" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Soups</span>
+            <img src="images/ogbono-eba.webp" alt="Ogbono Soup with Eba" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Soup &amp; Swallow</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Afang Soup</h3>
-            <p class="menu-item-desc">A Southern Nigerian delicacy — wild leaves, waterleaf, and assorted meats in a rich palm oil base.</p>
+            <h3 class="menu-item-name">Ogbono &amp; Eba</h3>
+            <p class="menu-item-desc">Silky, draw-soup perfection — ogbono cooked with palm oil and peppers, served with eba.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,200 – ₦2,000</span>
-              <span class="menu-tag">Special</span>
+              <span class="menu-price">From ₦1,000</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="soups" role="listitem">
-          <!-- images/vegetable-soup.jpg -->
+        <article class="menu-card fade-in" data-category="soup-swallow" role="listitem">
           <div class="menu-card-image">
-            <img src="images/vegetable-soup.jpg" alt="Vegetable Soup" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Soups</span>
+            <img src="images/vegetable-soup-semo.webp" alt="Vegetable Soup with Semo" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Soup &amp; Swallow</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Vegetable Soup</h3>
-            <p class="menu-item-desc">Light, fresh, and flavourful — cooked with ugwu, stockfish, and palm oil. Healthy and satisfying.</p>
+            <h3 class="menu-item-name">Vegetable Soup &amp; Semo</h3>
+            <p class="menu-item-desc">Light, fresh, and flavourful vegetable soup served with smooth, stretchy semovita.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,000 – ₦1,800</span>
+              <span class="menu-price">From ₦1,000</span>
               <span class="menu-tag">Healthy</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="soups" role="listitem">
-          <!-- images/oha-soup.jpg -->
+        <article class="menu-card fade-in" data-category="soup-swallow" role="listitem">
           <div class="menu-card-image">
-            <img src="images/oha-soup.jpg" alt="Oha Soup" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Soups</span>
+            <img src="images/oha-soup-fufu.webp" alt="Oha Soup with Fufu" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Soup &amp; Swallow</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Oha Soup</h3>
-            <p class="menu-item-desc">An Igbo delicacy made with tender oha leaves, cocoyam, and rich palm oil. Earthy and aromatic.</p>
+            <h3 class="menu-item-name">Oha Soup &amp; Fufu</h3>
+            <p class="menu-item-desc">An Igbo delicacy made with tender oha leaves and rich palm oil, served with soft fufu.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦1,200 – ₦2,000</span>
+              <span class="menu-price">From ₦1,000</span>
             </div>
           </div>
         </article>
 
-        <!-- SWALLOWS -->
-        <article class="menu-card fade-in" data-category="swallows" role="listitem">
-          <!-- images/semo.jpg -->
+        <!-- ADD-ONS -->
+        <article class="menu-card fade-in" data-category="add-ons" role="listitem">
           <div class="menu-card-image">
-            <img src="images/semo.jpg" alt="Semo" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Swallows</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-item-name">Semo</h3>
-            <p class="menu-item-desc">Smooth, stretchy semovita — the perfect companion for all our delicious soups.</p>
-            <div class="menu-item-footer">
-              <span class="menu-price">₦300 – ₦500</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="menu-card fade-in" data-category="swallows" role="listitem">
-          <!-- images/eba.jpg -->
-          <div class="menu-card-image">
-            <img src="images/eba.jpg" alt="Eba" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Swallows</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-item-name">Eba</h3>
-            <p class="menu-item-desc">Golden, firm garri swallow — a Nigerian staple that pairs wonderfully with any soup on our menu.</p>
-            <div class="menu-item-footer">
-              <span class="menu-price">₦200 – ₦400</span>
-              <span class="menu-tag">Staple</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="menu-card fade-in" data-category="swallows" role="listitem">
-          <!-- images/fufu.jpg -->
-          <div class="menu-card-image">
-            <img src="images/fufu.jpg" alt="Fufu" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Swallows</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-item-name">Fufu</h3>
-            <p class="menu-item-desc">Soft, smooth cassava fufu — light, filling, and best enjoyed with egusi or ogbono soup.</p>
-            <div class="menu-item-footer">
-              <span class="menu-price">₦200 – ₦400</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROTEINS -->
-        <article class="menu-card fade-in" data-category="proteins" role="listitem">
-          <!-- images/fried-beef.jpg -->
-          <div class="menu-card-image">
-            <img src="images/fried-beef.jpg" alt="Fried Beef" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Proteins</span>
+            <img src="images/fried-beef.webp" alt="Fried Beef" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Add-on</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Fried Beef</h3>
             <p class="menu-item-desc">Tender, well-seasoned beef, deep-fried to perfection. The ideal protein add-on for any meal.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦400 – ₦700</span>
+              <span class="menu-price">From ₦200</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="proteins" role="listitem">
-          <!-- images/fried-chicken.jpg -->
+        <article class="menu-card fade-in" data-category="add-ons" role="listitem">
           <div class="menu-card-image">
-            <img src="images/fried-chicken.jpg" alt="Fried Chicken" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Proteins</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-item-name">Fried Chicken</h3>
-            <p class="menu-item-desc">Crispy, juicy, golden-fried chicken — a crowd pleaser that elevates any meal on the menu.</p>
-            <div class="menu-item-footer">
-              <span class="menu-price">₦600 – ₦1,000</span>
-              <span class="menu-tag">Favourite</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="menu-card fade-in" data-category="proteins" role="listitem">
-          <!-- images/boiled-egg.jpg -->
-          <div class="menu-card-image">
-            <img src="images/boiled-egg.jpg" alt="Boiled Egg" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Proteins</span>
+            <img src="images/boiled-egg.webp" alt="Boiled Egg" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Add-on</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Boiled Egg</h3>
             <p class="menu-item-desc">Fresh boiled eggs — a quick, protein-rich add-on, especially great with Indomie.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦100 – ₦200</span>
+              <span class="menu-price">₦300</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="proteins" role="listitem">
-          <!-- images/kpomo.jpg -->
+        <article class="menu-card fade-in" data-category="add-ons" role="listitem">
           <div class="menu-card-image">
-            <img src="images/kpomo.jpg" alt="Kpomo" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Proteins</span>
+            <img src="images/kpomo.webp" alt="Kpomo" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Add-on</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Kpomo</h3>
-            <p class="menu-item-desc">Soft, chewy cow skin prepared in-house — a beloved Nigerian protein that enriches any soup or stew.</p>
+            <p class="menu-item-desc">Soft, chewy cow skin prepared in-house — a beloved Nigerian protein add-on.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦200 – ₦400</span>
+              <span class="menu-price">From ₦200</span>
             </div>
           </div>
         </article>
 
-        <!-- SIDES -->
-        <article class="menu-card fade-in" data-category="sides" role="listitem">
-          <!-- images/salad.jpg -->
+        <article class="menu-card fade-in" data-category="add-ons" role="listitem">
           <div class="menu-card-image">
-            <img src="images/salad.jpg" alt="Fresh Salad" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Sides</span>
+            <img src="images/salad.webp" alt="Fresh Salad" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Add-on</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Salad</h3>
-            <p class="menu-item-desc">A fresh, crispy Nigerian salad — coleslaw, vegetables, and creamy dressing. Light and refreshing.</p>
+            <p class="menu-item-desc">A fresh, crispy Nigerian salad — coleslaw, vegetables, and creamy dressing.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦200 – ₦400</span>
+              <span class="menu-price">From ₦200</span>
               <span class="menu-tag">Fresh</span>
             </div>
           </div>
         </article>
 
-        <article class="menu-card fade-in" data-category="sides" role="listitem">
-          <!-- images/plantain.jpg -->
+        <article class="menu-card fade-in" data-category="add-ons" role="listitem">
           <div class="menu-card-image">
-            <img src="images/plantain.jpg" alt="Fried Plantain" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Sides</span>
+            <img src="images/fried-plantain.webp" alt="Fried Plantain" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Add-on</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Fried Plantain</h3>
-            <p class="menu-item-desc">Sweet, caramelized ripe plantain slices — the perfect golden side to rice, beans, or any meal.</p>
+            <p class="menu-item-desc">Sweet, caramelized ripe plantain slices — the perfect golden side to any meal.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦200 – ₦300</span>
+              <span class="menu-price">From ₦100</span>
               <span class="menu-tag">Sweet</span>
             </div>
           </div>
@@ -649,124 +605,116 @@
 
         <!-- SNACKS -->
         <article class="menu-card fade-in" data-category="snacks" role="listitem">
-          <!-- images/doughnut.jpg -->
           <div class="menu-card-image">
-            <img src="images/doughnut.jpg" alt="Doughnut" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Snacks</span>
+            <img src="images/doughnut.webp" alt="Doughnut" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Doughnut</h3>
             <p class="menu-item-desc">Soft, fluffy, lightly sweetened Nigerian doughnuts — perfect as a quick snack between activities.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦100 – ₦200</span>
+              <span class="menu-price">₦500</span>
             </div>
           </div>
         </article>
 
         <article class="menu-card fade-in" data-category="snacks" role="listitem">
-          <!-- images/chin-chin.jpg -->
           <div class="menu-card-image">
-            <img src="images/chin-chin.jpg" alt="Chin Chin" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Snacks</span>
+            <img src="images/chin-chin.webp" alt="Chin Chin" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Chin Chin</h3>
-            <p class="menu-item-desc">Crunchy, golden, lightly sweetened chin chin — the ultimate Nigerian munchie for any time of day.</p>
+            <p class="menu-item-desc">Crunchy, golden, lightly sweetened chin chin — the ultimate Nigerian munchie.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦100 – ₦300</span>
+              <span class="menu-price">From ₦200</span>
             </div>
           </div>
         </article>
 
         <article class="menu-card fade-in" data-category="snacks" role="listitem">
-          <!-- images/egg-roll.jpg -->
           <div class="menu-card-image">
-            <img src="images/egg-roll.jpg" alt="Egg Roll" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Snacks</span>
+            <img src="images/egg-roll.webp" alt="Egg Roll" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Egg Roll</h3>
             <p class="menu-item-desc">Crispy pastry encasing a whole boiled egg — a filling, savoury snack you can grab on the go.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦150 – ₦250</span>
+              <span class="menu-price">₦600</span>
               <span class="menu-tag">Popular</span>
             </div>
           </div>
         </article>
 
         <article class="menu-card fade-in" data-category="snacks" role="listitem">
-          <!-- images/buns.jpg -->
           <div class="menu-card-image">
-            <img src="images/buns.jpg" alt="Buns" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Snacks</span>
+            <img src="images/buns.webp" alt="Buns" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Buns</h3>
-            <p class="menu-item-desc">Soft, golden Nigerian buns — slightly sweet with a tender crumb. Great for breakfast or as a snack.</p>
+            <p class="menu-item-desc">Soft, golden Nigerian buns — slightly sweet with a tender crumb.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦100 – ₦200</span>
+              <span class="menu-price">₦250</span>
             </div>
           </div>
         </article>
 
         <article class="menu-card fade-in" data-category="snacks" role="listitem">
-          <!-- images/toasted-bread.jpg -->
           <div class="menu-card-image">
-            <img src="images/toasted-bread.jpg" alt="Toasted Bread" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Snacks</span>
+            <img src="images/toasted-bread-egg.webp" alt="Toasted Bread with Egg" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Toasted Bread</h3>
-            <p class="menu-item-desc">Warm, crispy toasted bread with butter or spread — a light, satisfying breakfast option.</p>
+            <h3 class="menu-item-name">Toasted Bread with Egg</h3>
+            <p class="menu-item-desc">Warm, crispy toasted bread served with egg — a light, satisfying breakfast option.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦150 – ₦300</span>
+              <span class="menu-price">From ₦1,000</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card fade-in" data-category="snacks" role="listitem">
+          <div class="menu-card-image">
+            <img src="images/peanut.webp" alt="Peanut" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Snack</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Peanut</h3>
+            <p class="menu-item-desc">Crunchy roasted groundnuts — a simple, satisfying snack on its own or alongside a drink.</p>
+            <div class="menu-item-footer">
+              <span class="menu-price">₦200</span>
             </div>
           </div>
         </article>
 
         <!-- DRINKS -->
         <article class="menu-card fade-in" data-category="drinks" role="listitem">
-          <!-- images/soft-drink.jpg -->
           <div class="menu-card-image">
-            <img src="images/soft-drink.jpg" alt="Soft Drinks" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Drinks</span>
+            <img src="images/soft-drink.webp" alt="Soft Drink" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Drink</span>
           </div>
           <div class="menu-card-body">
-            <h3 class="menu-item-name">Soft Drinks</h3>
+            <h3 class="menu-item-name">Soft Drink</h3>
             <p class="menu-item-desc">Chilled Coke, Fanta, Sprite, and more — the perfect companion to any meal or snack.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦300 – ₦500</span>
+              <span class="menu-price">From ₦600</span>
             </div>
           </div>
         </article>
 
         <article class="menu-card fade-in" data-category="drinks" role="listitem">
-          <!-- images/bottle-water.jpg -->
           <div class="menu-card-image">
-            <img src="images/bottle-water.jpg" alt="Bottled Water" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Drinks</span>
+            <img src="images/bottle-water.webp" alt="Bottle Water" width="640" height="400" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-sm')" />
+            <span class="menu-category-badge">Drink</span>
           </div>
           <div class="menu-card-body">
             <h3 class="menu-item-name">Bottle Water</h3>
             <p class="menu-item-desc">Clean, chilled bottled water — because staying hydrated at camp is essential.</p>
             <div class="menu-item-footer">
-              <span class="menu-price">₦150 – ₦300</span>
+              <span class="menu-price">₦300</span>
               <span class="menu-tag">Essential</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="menu-card fade-in" data-category="drinks" role="listitem">
-          <!-- images/pure-water.jpg -->
-          <div class="menu-card-image">
-            <img src="images/pure-water.jpg" alt="Pure Water" onerror="this.parentElement.classList.add('img-fallback-sm')" />
-            <span class="menu-category-badge">Drinks</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-item-name">Pure Water</h3>
-            <p class="menu-item-desc">Affordable, clean sachet water — always available to keep you refreshed throughout camp.</p>
-            <div class="menu-item-footer">
-              <span class="menu-price">₦30 – ₦50</span>
             </div>
           </div>
         </article>
@@ -783,148 +731,92 @@
         <p class="section-tag">Order Online</p>
         <h2 id="order-heading" class="section-title">Place Your Order</h2>
         <p class="section-subtitle">
-          Pick your meals, choose pickup or delivery, and send your order straight to our kitchen on WhatsApp.
+          Pick a complete meal, add optional extras, choose pickup or delivery, and send your order straight to our kitchen on WhatsApp.
         </p>
       </div>
 
       <div class="order-layout fade-in">
 
         <!-- Order Builder -->
-        <div class="order-builder" id="orderBuilder" aria-label="Choose items to order">
+        <div class="order-builder" id="orderBuilder" aria-label="Choose meals and extras to order">
 
           <div class="order-category">
-            <h3 class="order-category-title">Meals</h3>
-            <div class="order-item" data-name="Rice &amp; Stew" data-price="1000">
-              <div class="order-item-info"><span class="order-item-name">Rice &amp; Stew</span><span class="order-item-price">from ₦1,000</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Rice &amp; Stew quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Rice &amp; Stew quantity">+</button></div>
+            <h3 class="order-category-title">Complete Meals</h3>
+            <div class="order-item" data-name="Rice &amp; Stew with Beef" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Rice &amp; Stew with Beef</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Rice &amp; Stew with Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Rice &amp; Stew with Beef quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Jollof Rice" data-price="1000">
-              <div class="order-item-info"><span class="order-item-name">Jollof Rice</span><span class="order-item-price">from ₦1,000</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Jollof Rice quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Jollof Rice quantity">+</button></div>
+            <div class="order-item" data-name="Rice, Stew, Salad &amp; Fried Plantain with Beef" data-price="1500">
+              <div class="order-item-info"><span class="order-item-name">Rice, Stew, Salad &amp; Fried Plantain with Beef</span><span class="order-item-price">from ₦1,500</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Rice, Stew, Salad and Fried Plantain with Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Rice, Stew, Salad and Fried Plantain with Beef quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="White Beans" data-price="800">
-              <div class="order-item-info"><span class="order-item-name">White Beans</span><span class="order-item-price">from ₦800</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease White Beans quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase White Beans quantity">+</button></div>
+            <div class="order-item" data-name="Jollof Rice with Beef" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Jollof Rice with Beef</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Jollof Rice with Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Jollof Rice with Beef quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Porridge Beans" data-price="800">
-              <div class="order-item-info"><span class="order-item-name">Porridge Beans</span><span class="order-item-price">from ₦800</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Porridge Beans quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Porridge Beans quantity">+</button></div>
+            <div class="order-item" data-name="Jollof Rice with Chicken" data-price="1500">
+              <div class="order-item-info"><span class="order-item-name">Jollof Rice with Chicken</span><span class="order-item-price">from ₦1,500</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Jollof Rice with Chicken quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Jollof Rice with Chicken quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Indomie" data-price="600">
-              <div class="order-item-info"><span class="order-item-name">Indomie</span><span class="order-item-price">from ₦600</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Indomie quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Indomie quantity">+</button></div>
+            <div class="order-item" data-name="Fried Rice with Beef" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Fried Rice with Beef</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fried Rice with Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fried Rice with Beef quantity">+</button></div>
+            </div>
+            <div class="order-item" data-name="Porridge Beans with Beef" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Porridge Beans with Beef</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Porridge Beans with Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Porridge Beans with Beef quantity">+</button></div>
+            </div>
+            <div class="order-item" data-name="Fried Indomie with Egg" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Fried Indomie with Egg</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fried Indomie with Egg quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fried Indomie with Egg quantity">+</button></div>
             </div>
           </div>
 
           <div class="order-category">
-            <h3 class="order-category-title">Soups</h3>
-            <div class="order-item" data-name="Egusi Soup" data-price="1000">
-              <div class="order-item-info"><span class="order-item-name">Egusi Soup</span><span class="order-item-price">from ₦1,000</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Egusi Soup quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Egusi Soup quantity">+</button></div>
+            <h3 class="order-category-title">Soup &amp; Swallow</h3>
+            <div class="order-item" data-name="Egusi &amp; Fufu" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Egusi &amp; Fufu</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Egusi and Fufu quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Egusi and Fufu quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Ogbono Soup" data-price="1000">
-              <div class="order-item-info"><span class="order-item-name">Ogbono Soup</span><span class="order-item-price">from ₦1,000</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Ogbono Soup quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Ogbono Soup quantity">+</button></div>
+            <div class="order-item" data-name="Egusi &amp; Eba" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Egusi &amp; Eba</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Egusi and Eba quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Egusi and Eba quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Afang Soup" data-price="1200">
-              <div class="order-item-info"><span class="order-item-name">Afang Soup</span><span class="order-item-price">from ₦1,200</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Afang Soup quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Afang Soup quantity">+</button></div>
+            <div class="order-item" data-name="Ogbono &amp; Eba" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Ogbono &amp; Eba</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Ogbono and Eba quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Ogbono and Eba quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Vegetable Soup" data-price="1000">
-              <div class="order-item-info"><span class="order-item-name">Vegetable Soup</span><span class="order-item-price">from ₦1,000</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Vegetable Soup quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Vegetable Soup quantity">+</button></div>
+            <div class="order-item" data-name="Vegetable Soup &amp; Semo" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Vegetable Soup &amp; Semo</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Vegetable Soup and Semo quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Vegetable Soup and Semo quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Oha Soup" data-price="1200">
-              <div class="order-item-info"><span class="order-item-name">Oha Soup</span><span class="order-item-price">from ₦1,200</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Oha Soup quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Oha Soup quantity">+</button></div>
-            </div>
-          </div>
-
-          <div class="order-category">
-            <h3 class="order-category-title">Swallows</h3>
-            <div class="order-item" data-name="Semo" data-price="300">
-              <div class="order-item-info"><span class="order-item-name">Semo</span><span class="order-item-price">from ₦300</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Semo quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Semo quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Eba" data-price="200">
-              <div class="order-item-info"><span class="order-item-name">Eba</span><span class="order-item-price">from ₦200</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Eba quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Eba quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Fufu" data-price="200">
-              <div class="order-item-info"><span class="order-item-name">Fufu</span><span class="order-item-price">from ₦200</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fufu quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fufu quantity">+</button></div>
+            <div class="order-item" data-name="Oha Soup &amp; Fufu" data-price="1000">
+              <div class="order-item-info"><span class="order-item-name">Oha Soup &amp; Fufu</span><span class="order-item-price">from ₦1,000</span></div>
+              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Oha Soup and Fufu quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Oha Soup and Fufu quantity">+</button></div>
             </div>
           </div>
 
           <div class="order-category">
-            <h3 class="order-category-title">Proteins</h3>
-            <div class="order-item" data-name="Fried Beef" data-price="400">
-              <div class="order-item-info"><span class="order-item-name">Fried Beef</span><span class="order-item-price">from ₦400</span></div>
+            <h3 class="order-category-title">Extras</h3>
+            <div class="order-item" data-name="Fried Beef" data-price="200" data-extra="true">
+              <div class="order-item-info"><span class="order-item-name">Fried Beef</span><span class="order-item-price">from ₦200</span></div>
               <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fried Beef quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fried Beef quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Fried Chicken" data-price="600">
-              <div class="order-item-info"><span class="order-item-name">Fried Chicken</span><span class="order-item-price">from ₦600</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fried Chicken quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fried Chicken quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Boiled Egg" data-price="100">
-              <div class="order-item-info"><span class="order-item-name">Boiled Egg</span><span class="order-item-price">from ₦100</span></div>
+            <div class="order-item" data-name="Boiled Egg" data-price="300" data-extra="true">
+              <div class="order-item-info"><span class="order-item-name">Boiled Egg</span><span class="order-item-price">₦300</span></div>
               <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Boiled Egg quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Boiled Egg quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Kpomo" data-price="200">
+            <div class="order-item" data-name="Kpomo" data-price="200" data-extra="true">
               <div class="order-item-info"><span class="order-item-name">Kpomo</span><span class="order-item-price">from ₦200</span></div>
               <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Kpomo quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Kpomo quantity">+</button></div>
             </div>
-          </div>
-
-          <div class="order-category">
-            <h3 class="order-category-title">Sides</h3>
-            <div class="order-item" data-name="Salad" data-price="200">
+            <div class="order-item" data-name="Salad" data-price="200" data-extra="true">
               <div class="order-item-info"><span class="order-item-name">Salad</span><span class="order-item-price">from ₦200</span></div>
               <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Salad quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Salad quantity">+</button></div>
             </div>
-            <div class="order-item" data-name="Fried Plantain" data-price="200">
-              <div class="order-item-info"><span class="order-item-name">Fried Plantain</span><span class="order-item-price">from ₦200</span></div>
+            <div class="order-item" data-name="Fried Plantain" data-price="100" data-extra="true">
+              <div class="order-item-info"><span class="order-item-name">Fried Plantain</span><span class="order-item-price">from ₦100</span></div>
               <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Fried Plantain quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Fried Plantain quantity">+</button></div>
-            </div>
-          </div>
-
-          <div class="order-category">
-            <h3 class="order-category-title">Snacks</h3>
-            <div class="order-item" data-name="Doughnut" data-price="100">
-              <div class="order-item-info"><span class="order-item-name">Doughnut</span><span class="order-item-price">from ₦100</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Doughnut quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Doughnut quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Chin Chin" data-price="100">
-              <div class="order-item-info"><span class="order-item-name">Chin Chin</span><span class="order-item-price">from ₦100</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Chin Chin quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Chin Chin quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Egg Roll" data-price="150">
-              <div class="order-item-info"><span class="order-item-name">Egg Roll</span><span class="order-item-price">from ₦150</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Egg Roll quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Egg Roll quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Buns" data-price="100">
-              <div class="order-item-info"><span class="order-item-name">Buns</span><span class="order-item-price">from ₦100</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Buns quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Buns quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Toasted Bread" data-price="150">
-              <div class="order-item-info"><span class="order-item-name">Toasted Bread</span><span class="order-item-price">from ₦150</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Toasted Bread quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Toasted Bread quantity">+</button></div>
-            </div>
-          </div>
-
-          <div class="order-category">
-            <h3 class="order-category-title">Drinks</h3>
-            <div class="order-item" data-name="Soft Drinks" data-price="300">
-              <div class="order-item-info"><span class="order-item-name">Soft Drinks</span><span class="order-item-price">from ₦300</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Soft Drinks quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Soft Drinks quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Bottle Water" data-price="150">
-              <div class="order-item-info"><span class="order-item-name">Bottle Water</span><span class="order-item-price">from ₦150</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Bottle Water quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Bottle Water quantity">+</button></div>
-            </div>
-            <div class="order-item" data-name="Pure Water" data-price="30">
-              <div class="order-item-info"><span class="order-item-name">Pure Water</span><span class="order-item-price">from ₦30</span></div>
-              <div class="qty-stepper"><button type="button" class="qty-btn qty-minus" aria-label="Decrease Pure Water quantity">−</button><span class="qty-value">0</span><button type="button" class="qty-btn qty-plus" aria-label="Increase Pure Water quantity">+</button></div>
             </div>
           </div>
 
@@ -935,7 +827,7 @@
           <h3 class="order-summary-title">Your Order</h3>
 
           <div class="order-summary-list" id="orderSummaryList">
-            <p class="order-summary-empty" id="orderSummaryEmpty">No items selected yet — tap “+” next to a meal to add it.</p>
+            <p class="order-summary-empty" id="orderSummaryEmpty">No items selected yet — tap “+” next to a meal or extra to add it.</p>
           </div>
 
           <div class="order-summary-total-row">
@@ -943,7 +835,7 @@
             <span id="orderTotal">₦0</span>
           </div>
           <p class="order-estimate-note">
-            Prices shown are starting prices. Final cost depends on portion size and protein choice, and will be confirmed by our team on WhatsApp.
+            Prices shown are starting prices. Final cost depends on portion size, and will be confirmed by our team on WhatsApp.
           </p>
 
           <div class="order-field-group">
@@ -1013,30 +905,30 @@
                 <span>Cash on Pickup/Delivery</span>
               </label>
               <label class="order-pill">
-                <input type="radio" name="payment" value="Bank transfer" id="paymentTransfer" />
+                <input type="radio" name="payment" value="Bank transfer (OPay)" id="paymentTransfer" />
                 <span>Bank Transfer</span>
               </label>
             </div>
           </div>
 
-          <!-- Replace with actual bank account details -->
           <div class="bank-details-card" id="bankDetailsCard" hidden>
             <p class="bank-details-title">Transfer Details</p>
             <div class="bank-detail-row">
               <span>Bank</span>
-              <strong>Placeholder Bank</strong>
+              <strong>OPay</strong>
             </div>
             <div class="bank-detail-row">
               <span>Account Name</span>
-              <strong>SAED Kitchen</strong>
+              <strong>PATIENCE USEOMO EGUAIKHIDE</strong>
             </div>
             <div class="bank-detail-row">
               <span>Account Number</span>
               <span class="bank-account-copy">
-                <strong id="bankAccountNumber">0000000000</strong>
+                <strong id="bankAccountNumber">6109625015</strong>
                 <button type="button" class="copy-btn" id="copyAccountBtn">Copy</button>
               </span>
             </div>
+            <p class="copy-confirm" id="copyConfirm" role="status" aria-live="polite" hidden>Account number copied.</p>
             <p class="bank-details-note">Send your transfer receipt on WhatsApp once you place your order, and include your name in the transfer narration.</p>
           </div>
 
@@ -1134,43 +1026,43 @@
         <!-- Replace each src with actual food images when available -->
 
         <figure class="gallery-item" role="listitem">
-          <img src="images/rice-stew.jpg" alt="Rice and Stew served at SAED Kitchen" onerror="this.parentElement.classList.add('img-fallback-gal')" />
-          <figcaption>Rice &amp; Stew</figcaption>
+          <img src="images/rice-stew-beef.webp" alt="Rice and Stew with Beef served at SAED Kitchen" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <figcaption>Rice &amp; Stew with Beef</figcaption>
         </figure>
 
         <figure class="gallery-item gallery-item--tall" role="listitem">
-          <img src="images/egusi.jpg" alt="Egusi Soup with Eba" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <img src="images/egusi-eba.webp" alt="Egusi Soup with Eba" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
           <figcaption>Egusi Soup</figcaption>
         </figure>
 
         <figure class="gallery-item" role="listitem">
-          <img src="images/fried-chicken.jpg" alt="Crispy Fried Chicken" onerror="this.parentElement.classList.add('img-fallback-gal')" />
-          <figcaption>Fried Chicken</figcaption>
+          <img src="images/jollof-rice-chicken.webp" alt="Jollof Rice with Chicken" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <figcaption>Jollof Rice &amp; Chicken</figcaption>
         </figure>
 
         <figure class="gallery-item gallery-item--wide" role="listitem">
-          <img src="images/jollof-rice.jpg" alt="Jollof Rice" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <img src="images/jollof-rice-beef.webp" alt="Jollof Rice with Beef" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
           <figcaption>Jollof Rice</figcaption>
         </figure>
 
         <figure class="gallery-item" role="listitem">
-          <img src="images/plantain.jpg" alt="Fried Plantain" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <img src="images/fried-plantain.webp" alt="Fried Plantain" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
           <figcaption>Fried Plantain</figcaption>
         </figure>
 
         <figure class="gallery-item" role="listitem">
-          <img src="images/porridge-beans.jpg" alt="Porridge Beans with Fried Beef" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <img src="images/porridge-beans-beef.webp" alt="Porridge Beans with Beef" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
           <figcaption>Porridge Beans</figcaption>
         </figure>
 
         <figure class="gallery-item gallery-item--tall" role="listitem">
-          <img src="images/indomie.jpg" alt="Indomie with Boiled Egg" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <img src="images/fried-indomie-egg.webp" alt="Fried Indomie with Egg" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
           <figcaption>Indomie &amp; Egg</figcaption>
         </figure>
 
         <figure class="gallery-item" role="listitem">
-          <img src="images/afang.jpg" alt="Afang Soup" onerror="this.parentElement.classList.add('img-fallback-gal')" />
-          <figcaption>Afang Soup</figcaption>
+          <img src="images/oha-soup-fufu.webp" alt="Oha Soup with Fufu" loading="lazy" onerror="this.parentElement.classList.add('img-fallback-gal')" />
+          <figcaption>Oha Soup</figcaption>
         </figure>
 
       </div>
@@ -1262,7 +1154,7 @@
             <div>
               <p class="contact-label">Phone</p>
               <!-- Replace with actual phone number -->
-              <a href="tel:+2348000000000" class="contact-value">+234 800 000 0000</a>
+              <a href="tel:+2348097145479" class="contact-value">+234 809 714 5479</a>
             </div>
           </div>
 
@@ -1287,7 +1179,7 @@
           </div>
 
           <a
-            href="https://wa.me/2348000000000?text=Hello%20SAED%20Kitchen!%20I%27d%20like%20to%20know%20more%20about%20your%20menu"
+            href="https://wa.me/2348097145479?text=Hello%20SAED%20Kitchen!%20I%27d%20like%20to%20know%20more%20about%20your%20menu"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-whatsapp"
@@ -1398,11 +1290,11 @@
           </p>
           <p>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px;opacity:0.7" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href="tel:+2348000000000">+234 800 000 0000</a>
+            <a href="tel:+2348097145479">+234 809 714 5479</a>
           </p>
           <!-- Replace with actual WhatsApp number -->
           <a
-            href="https://wa.me/2348000000000"
+            href="https://wa.me/2348097145479"
             target="_blank"
             rel="noopener noreferrer"
             class="footer-whatsapp"

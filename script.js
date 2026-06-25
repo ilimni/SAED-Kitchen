@@ -222,77 +222,98 @@ function initMenuFilter() {
 
 
 /* ================================================================
-   5. ROTATING "TODAY'S SPECIAL" SECTION
+   5. TODAY'S SPECIAL — WEEKLY MEAL + SWIPE CAROUSEL
 ================================================================ */
 function initTodaysSpecial() {
-  const specialCard  = document.getElementById('specialCard');
+  const specialCard    = document.getElementById('specialCard');
   const specialImgWrap = document.getElementById('specialImgWrap');
-  const specialImg   = document.getElementById('specialImg');
-  const specialName  = document.getElementById('specialName');
-  const specialDesc  = document.getElementById('specialDesc');
-  const specialPrice = document.getElementById('specialPrice');
-  const dotsContainer = document.getElementById('specialDots');
+  const specialImg     = document.getElementById('specialImg');
+  const specialName    = document.getElementById('specialName');
+  const specialDesc    = document.getElementById('specialDesc');
+  const specialPrice   = document.getElementById('specialPrice');
+  const dotsContainer  = document.getElementById('specialDots');
 
   if (!specialCard) return;
 
-  // Define the rotating specials — image paths match files in /images/
+  // One featured meal per day of the week (index 0 = Monday … 6 = Sunday)
   const specials = [
     {
-      image: 'images/jollof-rice-chicken.jpg',
-      imageAlt: 'Jollof Rice and Fried Chicken',
-      name: 'Jollof Rice & Fried Chicken',
+      day: 'Monday',
+      image: 'images/rice-stew-salad-plantain-beef.webp',
+      imageAlt: 'Rice, Stew, Salad and Fried Plantain with Beef',
+      name: 'Rice, Stew, Salad &amp; Fried Plantain with Beef',
+      desc: 'A full, balanced plate — soft rice with rich tomato stew, fresh salad, caramelized plantain, and tender beef.',
+      price: '₦1,500'
+    },
+    {
+      day: 'Tuesday',
+      image: 'images/jollof-rice-chicken.webp',
+      imageAlt: 'Jollof Rice with Chicken',
+      name: 'Jollof Rice with Chicken',
       desc: 'Our signature smoky jollof rice paired with golden, crispy fried chicken. A camp classic loved by all.',
       price: '₦1,500'
     },
     {
-      image: 'images/rice-stew-plantain-salad.jpg',
-      imageAlt: 'Rice, Stew, Fried Plantain and Salad',
-      name: 'Rice & Stew + Fried Plantain + Salad',
-      desc: 'Soft rice with rich tomato stew, caramelized sweet plantain, and a fresh coleslaw salad. A full, balanced plate.',
-      price: '₦1,800'
+      day: 'Wednesday',
+      image: 'images/porridge-beans-beef.webp',
+      imageAlt: 'Porridge Beans with Beef',
+      name: 'Porridge Beans with Beef',
+      desc: 'Creamy, well-seasoned bean porridge paired with tender fried beef. Hearty and deeply satisfying.',
+      price: '₦1,000'
     },
     {
-      image: 'images/egusi-eba.jpg',
-      imageAlt: 'Egusi Soup with Eba',
-      name: 'Egusi Soup & Eba',
-      desc: 'Thick, aromatic egusi soup loaded with proteins and leafy greens, served with smooth, firm eba. The ultimate combo.',
-      price: '₦1,500'
+      day: 'Thursday',
+      image: 'images/fried-rice-beef.webp',
+      imageAlt: 'Fried Rice with Beef',
+      name: 'Fried Rice with Beef',
+      desc: 'Colourful, well-seasoned fried rice loaded with vegetables and served with tender, juicy beef.',
+      price: '₦1,000'
     },
     {
-      image: 'images/indomie-egg.jpg',
-      imageAlt: 'Indomie Noodles with Boiled Egg',
-      name: 'Indomie & Boiled Egg',
-      desc: 'Stir-fried noodles with vegetables and seasoning, served with a perfectly boiled egg. Quick, tasty, and filling.',
-      price: '₦800'
+      day: 'Friday',
+      image: 'images/egusi-fufu.webp',
+      imageAlt: 'Egusi Soup with Fufu',
+      name: 'Egusi &amp; Fufu',
+      desc: 'Rich, thick egusi soup packed with leafy vegetables, served with soft, smooth cassava fufu.',
+      price: '₦1,000'
     },
     {
-      image: 'images/porridge-beans-beef.jpg',
-      imageAlt: 'Porridge Beans with Fried Beef',
-      name: 'Porridge Beans & Fried Beef',
-      desc: 'Creamy, well-seasoned bean porridge paired with crispy fried beef. Protein-rich and deeply satisfying.',
-      price: '₦1,200'
+      day: 'Saturday',
+      image: 'images/fried-indomie-egg.webp',
+      imageAlt: 'Fried Indomie with Egg',
+      name: 'Fried Indomie with Egg',
+      desc: 'Stir-fried noodles with vegetables and egg, well seasoned. The quick-fix camp favourite.',
+      price: '₦1,000'
+    },
+    {
+      day: 'Sunday',
+      image: 'images/oha-soup-fufu.webp',
+      imageAlt: 'Oha Soup with Fufu',
+      name: 'Oha Soup &amp; Fufu',
+      desc: 'An Igbo delicacy made with tender oha leaves and rich palm oil, served with soft, smooth fufu.',
+      price: '₦1,000'
     }
   ];
 
-  let currentIndex = 0;
+  // JS getDay(): Sunday = 0 … Saturday = 6. Convert to Monday-first index (0-6).
+  const jsDay = new Date().getDay();
+  const todayIndex = (jsDay + 6) % 7;
+
+  let currentIndex = todayIndex;
   let autoRotateTimer = null;
-  const ROTATE_INTERVAL = 4500; // ms between rotations
+  const ROTATE_INTERVAL = 6000; // ms — auto-advance every 6 seconds, per spec
 
   // Build dot indicators
   function buildDots() {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
-    specials.forEach((_, i) => {
+    specials.forEach((meal, i) => {
       const dot = document.createElement('button');
       dot.classList.add('special-dot');
       dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `View special: ${specials[i].name}`);
-      if (i === 0) {
-        dot.classList.add('active');
-        dot.setAttribute('aria-selected', 'true');
-      } else {
-        dot.setAttribute('aria-selected', 'false');
-      }
+      dot.setAttribute('aria-label', `${meal.day}: ${meal.name.replace(/&amp;/g, '&')}`);
+      dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+      if (i === currentIndex) dot.classList.add('active');
       dot.addEventListener('click', () => {
         goToSpecial(i);
         resetTimer();
@@ -310,39 +331,47 @@ function initTodaysSpecial() {
     });
   }
 
-  // Transition to a specific meal
-  function goToSpecial(index) {
-    if (index === currentIndex) return;
+  // Render a meal into the card, with a fade transition
+  function renderSpecial(index, animate) {
+    const meal = specials[index];
 
-    // Animate out
-    specialCard.classList.add('transitioning');
-
-    setTimeout(() => {
+    function applyContent() {
       currentIndex = index;
-      const meal = specials[currentIndex];
-
-      // Update image
       if (specialImg) {
         specialImg.src = meal.image;
         specialImg.alt = meal.imageAlt;
-        // Reset fallback class so onerror can fire again
         if (specialImgWrap) specialImgWrap.classList.remove('special-img--fallback');
       }
-      specialName.textContent  = meal.name;
-      specialDesc.textContent  = meal.desc;
+      specialName.innerHTML  = meal.name;
+      specialDesc.textContent = meal.desc;
       specialPrice.textContent = meal.price;
-
       updateDots(currentIndex);
-
-      // Animate in
       specialCard.classList.remove('transitioning');
-    }, 500); // matches CSS transition duration
+    }
+
+    if (!animate) {
+      applyContent();
+      return;
+    }
+
+    specialCard.classList.add('transitioning');
+    setTimeout(applyContent, 500); // matches CSS transition duration
   }
 
-  // Advance to next meal
+  // Go to a specific meal (used by dots)
+  function goToSpecial(index) {
+    if (index === currentIndex) return;
+    renderSpecial(index, true);
+  }
+
+  // Advance to next meal (wraps around the week)
   function nextSpecial() {
-    const next = (currentIndex + 1) % specials.length;
-    goToSpecial(next);
+    renderSpecial((currentIndex + 1) % specials.length, true);
+  }
+
+  // Go to previous meal (wraps around the week)
+  function prevSpecial() {
+    renderSpecial((currentIndex - 1 + specials.length) % specials.length, true);
   }
 
   // Reset the auto-rotation timer
@@ -351,12 +380,41 @@ function initTodaysSpecial() {
     autoRotateTimer = setInterval(nextSpecial, ROTATE_INTERVAL);
   }
 
-  // Pause rotation when user is hovering
+  // Pause rotation when user is hovering (desktop)
   specialCard.addEventListener('mouseenter', () => clearInterval(autoRotateTimer));
   specialCard.addEventListener('mouseleave', resetTimer);
 
-  // Initialise
+  // --- Swipe gestures (mobile) ---
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  specialCard.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    clearInterval(autoRotateTimer);
+  }, { passive: true });
+
+  specialCard.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const SWIPE_THRESHOLD = 40;
+
+    // Only treat as a swipe if horizontal movement dominates (avoids hijacking vertical scroll)
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        nextSpecial(); // swipe left -> next
+      } else {
+        prevSpecial(); // swipe right -> previous
+      }
+    }
+    resetTimer();
+  }, { passive: true });
+
+  // Initialise — show today's meal first (no fade on first paint)
   buildDots();
+  renderSpecial(todayIndex, false);
   resetTimer();
 }
 
@@ -475,9 +533,8 @@ function initOrderForm() {
 
   if (!orderBuilder || !sendOrderBtn) return; // Order section not on this page
 
-  // Kitchen's WhatsApp number — replace with the real number (same one used
-  // for the footer/contact WhatsApp links, kept in sync with those).
-  const KITCHEN_WHATSAPP_NUMBER = '2348000000000';
+  // Kitchen's WhatsApp number — kept in sync with the footer/contact WhatsApp links.
+  const KITCHEN_WHATSAPP_NUMBER = '2348097145479';
 
   const orderItems          = document.querySelectorAll('.order-item');
   const summaryList         = document.getElementById('orderSummaryList');
@@ -495,12 +552,13 @@ function initOrderForm() {
   const bankDetailsCard     = document.getElementById('bankDetailsCard');
   const copyAccountBtn      = document.getElementById('copyAccountBtn');
   const bankAccountNumber   = document.getElementById('bankAccountNumber');
+  const copyConfirm         = document.getElementById('copyConfirm');
   const orderNotes          = document.getElementById('orderNotes');
   const orderError          = document.getElementById('orderError');
 
   const currency = n => `₦${n.toLocaleString('en-NG')}`;
 
-  /* --- Quantity steppers --- */
+  /* --- Quantity steppers (works for both meals and extras) --- */
   orderItems.forEach(item => {
     const minusBtn = item.querySelector('.qty-minus');
     const plusBtn  = item.querySelector('.qty-plus');
@@ -517,9 +575,10 @@ function initOrderForm() {
     minusBtn.addEventListener('click', () => setQty(parseInt(qtyEl.textContent, 10) - 1));
   });
 
-  /* --- Render the order summary panel from current item quantities --- */
+  /* --- Render the live order summary (meals + extras), update total instantly --- */
   function renderSummary() {
-    const selected = [];
+    const meals  = [];
+    const extras = [];
     let total = 0;
 
     orderItems.forEach(item => {
@@ -528,27 +587,40 @@ function initOrderForm() {
         const price = parseInt(item.dataset.price, 10) || 0;
         const lineTotal = price * qty;
         total += lineTotal;
-        selected.push({ name: item.dataset.name, qty, price, lineTotal });
+        const line = { name: item.dataset.name, qty, price, lineTotal };
+        if (item.dataset.extra === 'true') {
+          extras.push(line);
+        } else {
+          meals.push(line);
+        }
       }
     });
 
     summaryList.innerHTML = '';
 
-    if (!selected.length) {
+    if (!meals.length && !extras.length) {
       summaryEmpty.hidden = false;
       summaryList.appendChild(summaryEmpty);
     } else {
       summaryEmpty.hidden = true;
-      selected.forEach(line => {
+
+      meals.forEach(line => {
         const row = document.createElement('div');
         row.className = 'order-summary-row';
         row.innerHTML = `<span>${line.qty} × ${line.name}</span><strong>${currency(line.lineTotal)}</strong>`;
         summaryList.appendChild(row);
       });
+
+      extras.forEach(line => {
+        const row = document.createElement('div');
+        row.className = 'order-summary-row';
+        row.innerHTML = `<span>+ ${line.qty} × ${line.name} <em>(extra)</em></span><strong>${currency(line.lineTotal)}</strong>`;
+        summaryList.appendChild(row);
+      });
     }
 
     totalEl.textContent = currency(total);
-    return { selected, total };
+    return { meals, extras, total };
   }
 
   /* --- Fulfillment type: show/hide delivery location picker --- */
@@ -574,13 +646,14 @@ function initOrderForm() {
       } catch {
         // Clipboard API unavailable — fall back silently, number is still visible to copy manually
       }
-      const original = copyAccountBtn.textContent;
-      copyAccountBtn.textContent = 'Copied!';
-      copyAccountBtn.classList.add('copied');
-      setTimeout(() => {
-        copyAccountBtn.textContent = original;
-        copyAccountBtn.classList.remove('copied');
-      }, 1800);
+      if (copyConfirm) {
+        copyConfirm.textContent = 'Account number copied.';
+        copyConfirm.hidden = false;
+        clearTimeout(copyAccountBtn._copyTimer);
+        copyAccountBtn._copyTimer = setTimeout(() => {
+          copyConfirm.hidden = true;
+        }, 2200);
+      }
     });
   }
 
@@ -599,10 +672,15 @@ function initOrderForm() {
   sendOrderBtn.addEventListener('click', () => {
     clearError();
 
-    const { selected, total } = renderSummary();
+    const { meals, extras, total } = renderSummary();
 
-    if (!selected.length) {
-      showError('Please select at least one item before placing your order.');
+    if (!meals.length && !extras.length) {
+      showError('Please select at least one meal before placing your order.');
+      orderBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    if (!meals.length) {
+      showError('Please select at least one complete meal (extras alone can\'t be ordered).');
       orderBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
@@ -638,14 +716,22 @@ function initOrderForm() {
 
     const notes = orderNotes.value.trim();
 
-    // Build the message
+    // Build the WhatsApp message
     const lines = [];
     lines.push('Hello SAED Kitchen! I\'d like to place an order.');
     lines.push('');
-    lines.push('*Order:*');
-    selected.forEach(line => {
+    lines.push('*Selected Meals:*');
+    meals.forEach(line => {
       lines.push(`• ${line.qty} × ${line.name} — ${currency(line.lineTotal)}`);
     });
+    if (extras.length) {
+      lines.push('');
+      lines.push('*Extras:*');
+      extras.forEach(line => {
+        lines.push(`• ${line.qty} × ${line.name} — ${currency(line.lineTotal)}`);
+      });
+    }
+    lines.push('');
     lines.push(`*Estimated Total:* ${currency(total)} (to be confirmed)`);
     lines.push('');
     lines.push(`*Fulfillment:* ${isDelivery ? 'Delivery' : 'Pickup'}`);
@@ -658,7 +744,7 @@ function initOrderForm() {
     lines.push(`*State Code:* ${stateCode}`);
     lines.push(`*Phone:* ${phone}`);
     if (notes) {
-      lines.push(`*Notes:* ${notes}`);
+      lines.push(`*Additional Notes:* ${notes}`);
     }
 
     const message = lines.join('\n');

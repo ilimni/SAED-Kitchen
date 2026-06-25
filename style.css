@@ -997,6 +997,7 @@ p { margin-bottom: 0; }
   padding: var(--space-3xl) var(--space-2xl);
   text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
+  touch-action: pan-y;
 }
 
 .special-card.transitioning {
@@ -1113,6 +1114,13 @@ p { margin-bottom: 0; }
 .special-dot[aria-selected="true"] {
   background: var(--color-gold);
   transform: scale(1.3);
+}
+
+.special-swipe-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: var(--space-md);
 }
 
 
@@ -1586,6 +1594,13 @@ p { margin-bottom: 0; }
   font-size: 0.75rem;
   color: var(--color-text-muted);
   line-height: 1.5;
+  margin-top: var(--space-sm);
+}
+
+.copy-confirm {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-primary);
   margin-top: var(--space-sm);
 }
 

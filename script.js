@@ -534,7 +534,7 @@ function initOrderForm() {
   if (!orderBuilder || !sendOrderBtn) return; // Order section not on this page
 
   // Kitchen's WhatsApp number — kept in sync with the footer/contact WhatsApp links.
-  const KITCHEN_WHATSAPP_NUMBER = '2348097145479';
+  const KITCHEN_WHATSAPP_NUMBER = '2347061208062';
 
   const orderItems          = document.querySelectorAll('.order-item');
   const summaryList         = document.getElementById('orderSummaryList');

@@ -575,10 +575,11 @@ function initOrderForm() {
     minusBtn.addEventListener('click', () => setQty(parseInt(qtyEl.textContent, 10) - 1));
   });
 
-  /* --- Render the live order summary (meals + extras), update total instantly --- */
+  /* --- Render the live order summary (meals + extras + drinks), update total instantly --- */
   function renderSummary() {
     const meals  = [];
     const extras = [];
+    const drinks = [];
     let total = 0;
 
     orderItems.forEach(item => {
@@ -590,6 +591,8 @@ function initOrderForm() {
         const line = { name: item.dataset.name, qty, price, lineTotal };
         if (item.dataset.extra === 'true') {
           extras.push(line);
+        } else if (item.dataset.drink === 'true') {
+          drinks.push(line);
         } else {
           meals.push(line);
         }
@@ -598,7 +601,7 @@ function initOrderForm() {
 
     summaryList.innerHTML = '';
 
-    if (!meals.length && !extras.length) {
+    if (!meals.length && !extras.length && !drinks.length) {
       summaryEmpty.hidden = false;
       summaryList.appendChild(summaryEmpty);
     } else {
@@ -617,10 +620,17 @@ function initOrderForm() {
         row.innerHTML = `<span>+ ${line.qty} × ${line.name} <em>(extra)</em></span><strong>${currency(line.lineTotal)}</strong>`;
         summaryList.appendChild(row);
       });
+
+      drinks.forEach(line => {
+        const row = document.createElement('div');
+        row.className = 'order-summary-row';
+        row.innerHTML = `<span>+ ${line.qty} × ${line.name} <em>(drink)</em></span><strong>${currency(line.lineTotal)}</strong>`;
+        summaryList.appendChild(row);
+      });
     }
 
     totalEl.textContent = currency(total);
-    return { meals, extras, total };
+    return { meals, extras, drinks, total };
   }
 
   /* --- Fulfillment type: show/hide delivery location picker --- */
@@ -672,15 +682,15 @@ function initOrderForm() {
   sendOrderBtn.addEventListener('click', () => {
     clearError();
 
-    const { meals, extras, total } = renderSummary();
+    const { meals, extras, drinks, total } = renderSummary();
 
-    if (!meals.length && !extras.length) {
+    if (!meals.length && !extras.length && !drinks.length) {
       showError('Please select at least one meal before placing your order.');
       orderBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
     if (!meals.length) {
-      showError('Please select at least one complete meal (extras alone can\'t be ordered).');
+      showError('Please select at least one complete meal (extras and drinks alone can\'t be ordered).');
       orderBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
@@ -728,6 +738,13 @@ function initOrderForm() {
       lines.push('');
       lines.push('*Extras:*');
       extras.forEach(line => {
+        lines.push(`• ${line.qty} × ${line.name} — ${currency(line.lineTotal)}`);
+      });
+    }
+    if (drinks.length) {
+      lines.push('');
+      lines.push('*Drinks:*');
+      drinks.forEach(line => {
         lines.push(`• ${line.qty} × ${line.name} — ${currency(line.lineTotal)}`);
       });
     }
